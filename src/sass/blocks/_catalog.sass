@@ -33,14 +33,19 @@
             border: none
     &__content
         margin-top: 60px
-        display: flex
+        display: none
         justify-content: space-between
         align-items: center
+        flex-wrap: wrap
+        &_active
+            display: flex
     &-item
         width: 300px
         min-height: 440px
         border: 2px solid #e8e8e8
         padding: 20px
+        overflow: hidden
+        margin-bottom: 20px
         &__img
             display: block
             margin: 0 auto
@@ -94,3 +99,55 @@
             font-size: 20px
             line-height: 100%
             color: #050505
+        &__wrapper
+            display: flex
+            width: calc(200% + 40px)
+        &__content
+            width: 50%
+            margin-right: 0px
+            transform: translateX(-100%)
+            transition: 0.5s all
+            &_active
+                transform: translateX(0%)
+                margin-right: 20px
+        &__list
+            position: relative
+            width: 50%  
+            transform: translateX(0%)
+            padding-right: 20px
+            transition: 0.5s all
+            padding-left: 19px
+            margin-bottom: 0
+            list-style-type: none
+            &_active
+                transform: translateX(-100%)
+                margin-right: 0px 
+            li
+                position: relative
+                margin-top: 10px
+                font-weight: 300
+                font-size: 14px
+                line-height: 150%
+                color: #555
+                &::before
+                    content: ''
+                    position: absolute
+                    width: 5px
+                    height: 5px
+                    background-color: $main-color
+                    top: 7px
+                    left: -15px
+        &__back
+            position: absolute
+            bottom: 0
+            left: 50%
+            transform: translateX(calc(-50% - 19px))
+            display: block
+            font-weight: 500
+            font-size: 14px
+            line-height: 100%
+            text-decoration: underline
+            text-decoration-skip-ink: none
+            text-align: center
+            color: $main-color           
+
