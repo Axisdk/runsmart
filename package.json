@@ -17,12 +17,13 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
     "sass": "^1.77.6"
-  }, 
+  },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "bootstrap": "^5.3.3"
   },
   "browserslist": [
-  "defaults and fully supports es6-module",
-  "maintained node versions"
+    "defaults and fully supports es6-module",
+    "maintained node versions"
   ]
 }
