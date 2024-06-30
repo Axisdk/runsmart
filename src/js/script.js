@@ -53,4 +53,69 @@ $(document).ready(function(){
       $('.modal__close, .overlay').on('click', function() {
         $('.overlay, #consultation, #order, #thank').fadeOut('slow');
       });
+      $('.modal').on('click', function(event) {
+        event.stopPropagation();
+      });
+
+
+
+      function validateForm(form) {
+        $(form).validate({
+          rules: {
+            name: {
+              required: true
+            },
+            phone: "required",
+            email: {
+              required: true,
+              email: true
+            },
+          },
+          messages: {
+            name: "Введите ваше имя",
+            phone: "Введите ваш номер",
+            email: {
+              required: "Введите почту, для контакта с вами",
+              email: "Введите эл.почту"
+            }
+          }
+        });
+      }
+
+      validateForm('#consultation form');
+      validateForm('#order form');
+      validateForm('#consultation-form form');
+
+      $('input[name=phone]').mask("+7 999-999-99-99")
+
+      $('form').submit(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+          type: "POST",
+          url: 'mailer/smart.php',
+          data: $(this).serialize()
+        }).done(function() {
+          $(this).find("input").val("");
+
+
+          $('form').trigger('reset');
+        });
+        return false;
+      });
+
+  //  Scroll Up
+
+      $(window).scroll(function() {
+        if ($(this).scrollTop() > 1200) {
+          $('.pageup').fadeIn();
+        } else {
+          $('.pageup').fadeOut();
+        }
+      })
+      $('#scrollToTopBtn').click(function() {
+        $('html, body').animate({scrollTop: 0}, 1000);
+        return false;
+      });
+
   });

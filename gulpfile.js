@@ -27,9 +27,18 @@ gulp.task('styles', function(){
             .pipe(browserSync.stream());
 });
 
-gulp.task('watch', function(){
+gulp.task('watchSass', function(){
     gulp.watch('src/sass/**/*.+(sass|scss)', gulp.parallel("styles"))
     gulp.watch('src/*.html').on("change", browserSync.reload)
 });
+// Задача для отслеживания изменений в JS файлах и обновления браузера
+gulp.task('watchJS', function() {
+    gulp.watch('src/js/*.js').on('change', browserSync.reload); // Отслеживаем изменения в JS и обновляем браузер
+});
 
-gulp.task('default', gulp.parallel('watch', 'server', 'styles'));
+// Задача для отслеживания изменений в HTML файлах и обновления браузера
+gulp.task('watchHTML', function() {
+    gulp.watch('src/*.html').on('change', browserSync.reload);
+});
+
+gulp.task('default', gulp.parallel('watchSass', 'watchJS', 'server', 'styles'));
